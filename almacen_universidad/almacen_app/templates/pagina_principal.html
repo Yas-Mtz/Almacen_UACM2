@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+</head>
+<body>
+    <h2>Bienvenido a la Página Principal</h2>
+    <!-- Aquí puedes agregar el contenido de tu página principal -->
+    <ul>
+        <li><a href="{% url 'registro_productos' %}">Registrar Productos</a></li>
+        <li><a href="{% url 'generar_informe' %}">Generar Informe</a></li>
+        <li><a href="{% url 'inventario' %}">Inventario</a></li>
+        <li><a href="{% url 'solicitudes' %}">Solicitudes</a></li>
+    </ul>
+</body>
+</html>
