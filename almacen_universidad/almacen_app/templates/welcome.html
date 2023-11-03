@@ -36,6 +36,7 @@
     <button id="btn_solicitar" onclick="mostrar_productos()">Solicitar productos almacén central</button>
     <button id="btn_generar" onclick="mostrar_reportes()">Generar Reportes e Inventario</button>
     <button id="btn_articulos" onclick="mostrar_solicitud()">Solicitud de artículos del almacén</button>
+    <button id="btn_registro_personas" onclick="mostrar_registro_personas()">Registro de Personas</button>
   </div>
   <div id="buscador_frame" style="padding: 10px; text-align: right;">
     <label for="entry_buscador">Buscar:</label>
@@ -57,6 +58,10 @@
     
     function mostrar_solicitud() {
       mostrar_ventana_secundaria("Solicitud de artículos del almacén");
+    }
+    
+    function mostrar_registro_personas() {
+      mostrar_ventana_secundaria("Registro de Personas");
     }
     
     function buscar() {
