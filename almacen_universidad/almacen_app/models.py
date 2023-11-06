@@ -1,9 +1,19 @@
 from django.db import models
 
+#modificación de rol, ya que solo habra 2 opciones
 class Rol(models.Model):
-    id_rol = models.AutoField(primary_key=True)
-    nombre_rol = models.CharField(max_length=255)
+    DOCENTE = 'docente'
+    MANTENIMIENTO = 'mantenimiento'
 
+    ROL_CHOICES = [
+        (DOCENTE, 'Docente'),
+        (MANTENIMIENTO, 'Personal de Mantenimiento'),
+    ]
+
+    id_rol = models.AutoField(primary_key=True)
+    nombre_rol = models.CharField(max_length=255, choices=ROL_CHOICES)
+
+#Creamos la clase persona con sus atributos y su respectiva clonación para hacer el prototipado
 class Persona(models.Model):
     id_persona = models.AutoField(primary_key=True)
     id_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
@@ -12,10 +22,10 @@ class Persona(models.Model):
     apellido_materno = models.CharField(max_length=255)
     telefono = models.CharField(max_length=15)
     correo = models.EmailField()
-    contrasena = models.CharField(max_length=255) 
+    contrasena = models.CharField(max_length=255)
 
     def clone(self):
-        # Crea una nueva instancia de Persona copiando los atributos del objeto actual
+        # Crea una nueva instancia de Persona clonando los atributos del objeto actual
         new_persona = Persona(
             id_rol=self.id_rol,
             nombre=self.nombre,
