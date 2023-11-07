@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Persona #importamos la clase persona
 from almacen_app.models import Persona
 from django.contrib import messages
+from .forms import RegistroPersonaForm #importación del formulario
 
 def login_view(request):
     if request.method == 'POST':
@@ -25,25 +26,33 @@ def login_view(request):
 # definimos la función del clonado para crear nuevas instancias 
 def registrar_persona_prototipo(request):
     if request.method == 'POST':
-         # Clona una instancia de Persona para usarla como prototipo
-        prototipo = Persona.objects.first().clone()
-        #creamos una instancia basada en el prototipo clonado 
-        nueva_persona = prototipo.clone()
-        # Completa los detalles con los datos del formulario
-        nueva_persona.nombre = request.POST['Máximo Eduardo']
-        nueva_persona.apellido_paterno = request.POST['Sánchez']
-        nueva_persona.apellido_materno = request.POST['Gutiérrez']
-        nueva_persona.telefono = request.POST['3948576238']
-        nueva_persona.correo = request.POST['maximo.sanchez@uacm.edu.mx']
-        nueva_persona.contrasena = request.POST['maximopower']
-        # Guarda la nueva instancia en la base de datos
-        nueva_persona.save()
-# Agregamos un mensaje de exito al guardar un nuevo usuario (persona).
-        messages.success(request, '¡Registro exitoso!')
-# Y nos quedamos en la misma página de registro
-        return redirect('nombre_de_la_vista_registro') 
-return render(request, 'registro_persona_prototipo.html')
-# Finalizamos la clonación.
+        form = RegistroPersonaForm(request.POST) #ingresamos la forma del formulario que crearemos
+        if form.is_valid():
+            # Crea una nueva instancia de Persona basada en el prototipo clonado
+            prototipo = Persona.objects.first().clone()
+            nueva_persona = prototipo.clone()
+
+            # Completa los detalles con los datos del formulario
+            nueva_persona.nombre = form.cleaned_data['nombre']
+            nueva_persona.apellido_paterno = form.cleaned_data['apellido_paterno']
+            nueva_persona.apellido_materno = form.cleaned_data['apellido_materno']
+            nueva_persona.telefono = form.cleaned_data['telefono']
+            nueva_persona.correo = form.cleaned_data['correo']
+            nueva_persona.contrasena = form.cleaned_data['contrasena']
+
+            # Guarda la nueva instancia en la base de datos
+            nueva_persona.save()
+
+            # Agrega un mensaje de éxito
+            messages.success(request, '¡Registro exitoso!')
+
+            return redirect('welcome')  # Reemplaza 'nombre_de_la_vista_registro' con el nombre de la vista de registro.
+
+    else:
+        form = RegistroPersonaForm()
+
+    return render(request, 'registro_persona_prototipo.html', {'form': form})
+# Fin de la clonación
 
 @login_required(login_url='login')  # Esto asegura que solo usuarios autenticados puedan acceder a esta vista
 def welcome_view(request):
