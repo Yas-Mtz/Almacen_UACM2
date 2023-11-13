@@ -1,5 +1,6 @@
 from django import forms
 
+#formulario para el registro de una une persona
 class RegistroPersonaForm(forms.Form):
     nombre = forms.CharField(max_length=255)
     apellido_paterno = forms.CharField(max_length=255)
