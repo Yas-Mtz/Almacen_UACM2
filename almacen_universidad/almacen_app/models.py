@@ -1,7 +1,7 @@
 from django.db import models
 
-#modificación de rol, ya que solo habra 2 opciones
 class Rol(models.Model):
+    #Representación de los roles 
     DOCENTE = 'docente'
     MANTENIMIENTO = 'mantenimiento'
 
@@ -13,8 +13,8 @@ class Rol(models.Model):
     id_rol = models.AutoField(primary_key=True)
     nombre_rol = models.CharField(max_length=255, choices=ROL_CHOICES)
 
-#Creamos la clase persona con sus atributos y su respectiva clonación para hacer el prototipado
 class Persona(models.Model):
+    # Modelo de representación de una persona.
     id_persona = models.AutoField(primary_key=True)
     id_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=255)
@@ -36,4 +36,3 @@ class Persona(models.Model):
             contrasena=self.contrasena
         )
         return new_persona
-
