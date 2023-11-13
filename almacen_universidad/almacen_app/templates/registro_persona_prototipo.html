@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Registro de Persona</title>
 <style>
+    /* Estilo para el cuerpo del documento*/
     body {
         font-family: Arial, sans-serif;
         background-color: #cccccc;
@@ -56,13 +57,14 @@
     <div class="header">
         <h1>Registro de Nueva Persona</h1>
     </div>
+    <!-- Formulario de registro de persona -->
     <div class="formulario">
         <form method="post">
             {% csrf_token %}
             <label for="id_rol">Rol:</label>
             <select id="id_rol" name="id_rol" required>
-                <option value="{{ DOCENTE }}">Docente</option>
-                <option value="{{ MANTENIMIENTO }}">Personal de Mantenimiento</option>
+                <option value="docente">Docente</option>
+                <option value="mantenimiento">Personal de Mantenimiento</option>
             </select>
             <label for="nombre">Nombre:</label>
             <input type="text" id="nombre" name="nombre" required>
@@ -76,6 +78,7 @@
             <input type="email" id="correo" name="correo" required>
             <label for="contrasena">Contraseña:</label>
             <input type="password" id="contrasena" name="contrasena" required>
+            <!-- Botón de envío del formulario -->
             <button type="submit">Registrar Persona</button>
         </form>
     </div>
