@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-#importamos la clase persona y un mensaje de alerta 
 from .models import Persona #importamos la clase persona
-from almacen_app.models import Persona
-from django.contrib import messages
-from .forms import RegistroPersonaForm #importación del formulario
+from .forms import RegistroPersonaForm
 
-def login_view(request):
+def login_view(request): #Manejo del inicio de sesión
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -15,18 +12,18 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            # Redirige a la página de bienvenida.
+            # Redirige a la página de bienvenida
             return redirect('welcome')
         else:
-            # Handle authentication error if needed
+            # Manejo de error de autentificación 
             pass
 
     return render(request, 'login.html')
 
-# definimos la función del clonado para crear nuevas instancias 
+#Definimos la función que utilizara para el clonado para crear una nueva instancia (basada en un prototipo)
 def registrar_persona_prototipo(request):
     if request.method == 'POST':
-        form = RegistroPersonaForm(request.POST) #ingresamos la forma del formulario que crearemos
+        form = RegistroPersonaForm(request.POST)
         if form.is_valid():
             # Crea una nueva instancia de Persona basada en el prototipo clonado
             prototipo = Persona.objects.first().clone()
@@ -43,21 +40,18 @@ def registrar_persona_prototipo(request):
             # Guarda la nueva instancia en la base de datos
             nueva_persona.save()
 
-            # Agrega un mensaje de éxito
-            messages.success(request, '¡Registro exitoso!')
-
-            return redirect('welcome')  # Reemplaza 'nombre_de_la_vista_registro' con el nombre de la vista de registro.
-
+            return redirect('welcome')  
+            #Redirecciona al registrar no redirigue a la pestaña de inicio
     else:
         form = RegistroPersonaForm()
 
     return render(request, 'registro_persona_prototipo.html', {'form': form})
 # Fin de la clonación
 
-@login_required(login_url='login')  # Esto asegura que solo usuarios autenticados puedan acceder a esta vista
+@login_required(login_url='login') #vista de bienvenida 
 def welcome_view(request):
     if request.user.is_authenticated:
         return render(request, 'welcome.html')
     else:
-    # Redirige al inicio si el usuario no esta registrado
-    return render(request, 'login') 
+        return redirect('login')  
+    # Redirige al inicio de sesión si el usuario no está autenticado
