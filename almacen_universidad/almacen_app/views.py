@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .models import Persona #importamos la clase persona
+from .models import Persona # Importamos la clase Persona
+from .models import Rol # Importamos la clase Rol
 from .forms import RegistroPersonaForm
 
-def login_view(request): #Manejo del inicio de sesión
+def login_view(request): # Manejo del inicio de sesión
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -12,12 +13,9 @@ def login_view(request): #Manejo del inicio de sesión
 
         if user is not None:
             login(request, user)
-            # Redirige a la página de bienvenida
-            return redirect('welcome')
-        else:
-            # Manejo de error de autentificación 
-            pass
-
+            return redirect('welcome') # Redirige a la página de bienvenida
+        else: 
+            pass # Manejo de error de autentificación
     return render(request, 'login.html')
 
 #Definimos la función que utilizara para el clonado para crear una nueva instancia (basada en un prototipo)
@@ -36,12 +34,11 @@ def registrar_persona_prototipo(request):
             nueva_persona.telefono = form.cleaned_data['telefono']
             nueva_persona.correo = form.cleaned_data['correo']
             nueva_persona.contrasena = form.cleaned_data['contrasena']
-
+            nueva_persona.id_rol = Rol.objects.get(nombre_rol=form.cleaned_data['id_rol'])
+            
             # Guarda la nueva instancia en la base de datos
             nueva_persona.save()
-
-            return redirect('welcome')  
-            #Redirecciona al registrar no redirigue a la pestaña de inicio
+            return redirect('welcome') # Redirecciona al registrar no redirigue a la pestaña de inicio  
     else:
         form = RegistroPersonaForm()
 
