@@ -36,3 +36,19 @@ class Persona(models.Model):
             contrasena=self.contrasena
         )
         return new_persona
+
+# Implementaremos la clase de almacen para la solicitud de productos a futuro de los 5 planteles
+
+class Alamcen(models.Model):
+      NOMBRES_ALMACENES = [
+          ('cuatepec', 'Almacen de Cuatepec'),
+          ('san_lorenzo', 'Almacen de San Lorenzo'),
+          ('casa_libertad', 'Almacen de Casa Libertad'),
+          ('del_valle', 'Almacen del Valle'),
+          ('centro_historico', 'Almacen de Centro Histórico'),
+      ]
+
+     nombre = models.CharField(max_length=20, choices=NOMBRES_ALMACENES, unique=True
+
+    def __str__(self):
+        return dict(self.NOMBRES_ALMACENES)[self.nombre]
