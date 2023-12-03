@@ -1,7 +1,11 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
+from datetime import datetime
+from .commands import Command
+
 
 class Rol(models.Model):
-    #Representación de los roles 
+    # Roles
     DOCENTE = 'docente'
     MANTENIMIENTO = 'mantenimiento'
 
@@ -14,7 +18,6 @@ class Rol(models.Model):
     nombre_rol = models.CharField(max_length=255, choices=ROL_CHOICES)
 
 class Persona(models.Model):
-    # Modelo de representación de una persona.
     id_persona = models.AutoField(primary_key=True)
     id_rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=255)
@@ -33,22 +36,60 @@ class Persona(models.Model):
             apellido_materno=self.apellido_materno,
             telefono=self.telefono,
             correo=self.correo,
-            contrasena=self.contrasena
+            contrasena=make_password(self.contrasena)  # Cifra la contraseña antes de guardarla
         )
         return new_persona
-
-# Implementaremos la clase de almacen para la solicitud de productos a futuro de los 5 planteles
-
-class Alamcen(models.Model):
-      NOMBRES_ALMACENES = [
-          ('cuatepec', 'Almacen de Cuatepec'),
-          ('san_lorenzo', 'Almacen de San Lorenzo'),
-          ('casa_libertad', 'Almacen de Casa Libertad'),
-          ('del_valle', 'Almacen del Valle'),
-          ('centro_historico', 'Almacen de Centro Histórico'),
-      ]
-
-     nombre = models.CharField(max_length=20, choices=NOMBRES_ALMACENES, unique=True
-
+    
+    # Obtenemos el nombre completo de la persona y sus apellidos para la solicitud de prodouctos
     def __str__(self):
-        return dict(self.NOMBRES_ALMACENES)[self.nombre]
+        return f'{self.nombre} {self.apellido_paterno} {self.apellido_materno}'
+
+
+class Almacen(models.Model):
+    id_almacen = models.AutoField(primary_key=True)
+    tipo_almacen = models.CharField(max_length=255)
+    direccion = models.TextField()
+    correo = models.EmailField()
+    telefono = models.CharField(max_length=15)
+
+# Apartado del patron de diseño Factory Method
+class Producto(models.Model):
+    id_producto = models.AutoField(primary_key=True)
+    nombre_producto = models.CharField(max_length=255)
+    cantidad = models.IntegerField()
+
+class ProductoFactory:
+    def create_producto(self, id_producto, nombre, cantidad):
+        return Producto.objects.create(id_producto=id_producto, nombre=nombre, cantidad=cantidad)
+
+class Solicitud(models.Model):
+    id_solicitud = models.AutoField(primary_key=True)
+    tipo_almacen = models.CharField(max_length=255)
+    nombre_persona = models.CharField(max_length=255)
+    nombre_producto = models.CharField(max_length=255)
+    cantidad = models.IntegerField()
+    fecha_solicitud = models.DateTimeField(default=datetime.now, blank=True)
+
+    # Relación con otras clases
+    id_almacen = models.ForeignKey(Almacen, on_delete=models.CASCADE)
+    id_persona = models.ForeignKey(Persona, on_delete=models.CASCADE)
+    id_producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+
+    def set_command(self, command):
+        self.command = command
+
+    def procesar_solicitud(self):
+        if hasattr(self, 'command'):
+            self.command.execute()
+            
+    # PATRON SINGLETON
+class Singleton:
+    _instance = None  # Variable de clase para almacenar la única instancia de la clase
+
+    def __new__(cls):  # método "new_" que se llama al crear una nueva instancia en la clase
+        if cls._instance is None:  # verificación de clase
+
+            # si no hay instancia, crea una nueva utilizando "_new_"
+            cls._instance = super(Singleton, cls).__new__(cls)
+
+        return cls._instance  # devuelve la instancia existente o creada
