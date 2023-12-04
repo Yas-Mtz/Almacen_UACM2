@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sistema de Inventario</title>
+    <link
+      href="{% static 'almacen_app/styles2.css/styles2.css' %}"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="cabecera">
+      <h1>Sistema de Inventario</h1>
+      <img src="{% static 'uacm1.jpg' %}" style="width: 150px; height: 90px" />
+    </div>
+    <div id="pagina_principal_frame">
+      <button id="btn_registrar" onclick="mostrar_inventario()">
+        Registrar productos a la base de datos
+      </button>
+      <button id="btn_solicitar" onclick="mostrar_productos()">
+        Solicitar productos almacén central
+      </button>
+      <button id="btn_generar" onclick="mostrar_reportes()">
+        Generar Reportes e Inventario
+      </button>
+      <button id="btn_articulos" onclick="mostrar_solicitud()">
+        Solicitud de artículos del almacén
+      </button>
+    </div>
+    <div id="buscador_frame" style="padding: 10px; text-align: right">
+      <label for="entry_buscador">Buscar:</label>
+      <input id="entry_buscador" type="text" />
+      <button id="btn_buscar" onclick="buscar()">Buscar</button>
+    </div>
+    <script>
+      function mostrar_inventario() {
+        mostrar_ventana_secundaria("Registrar productos a la base de datos");
+      }
+
+      function mostrar_productos() {
+        mostrar_ventana_secundaria("Solicitar productos almacén central");
+      }
+
+      function mostrar_reportes() {
+        mostrar_ventana_secundaria("Generar Reportes e Inventario");
+      }
+
+      function mostrar_solicitud() {
+        mostrar_ventana_secundaria("Solicitud de artículos del almacén");
+      }
+
+      function buscar() {
+        var query = document.getElementById("entry_buscador").value;
+        // Agregar código para realizar la búsqueda
+      }
+
+      function mostrar_ventana_secundaria(title) {
+        alert(title);
+      }
+    </script>
+  </body>
+</html>
