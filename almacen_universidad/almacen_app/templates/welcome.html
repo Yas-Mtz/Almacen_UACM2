@@ -4,6 +4,13 @@
 <head>
   <title>Sistema de Inventario</title>
   <style>
+    body {
+      background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: 'Arial', sans-serif;
+    }
+
     #cabecera {
       background-color: #b12424;
       color: white;
@@ -11,6 +18,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-radius: 10px;
     }
 
     #cabecera h1 {
@@ -22,6 +30,45 @@
       width: 100px;
       height: auto;
     }
+
+    #pagina_principal_frame {
+      padding: 20px;
+      background-color: #dddbe0; /* Color de fondo gris original */
+      opacity: 0.8; /* Opacidad del div */
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #4CAF50; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+      color: white; /* Cambia el color del texto al pasar el ratón sobre el botón */
+    }
+
+    #buscador_frame {
+      padding: 10px;
+      text-align: right;
+    }
+
+    label {
+      margin-right: 5px;
+    }
+
+    input {
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    
   </style>
 </head>
 <body>
@@ -31,12 +78,14 @@
   </div>
   <div id="pagina_principal_frame" style="padding: 20px; background-color: #dddbe0;">
     <p>Bienvenido al Sistema</p>
-    <p>Hola, {{ username }}.</p>
-    <button id="btn_registrar" onclick="mostrar_inventario()">Registrar productos a la base de datos</button>
+    <p>Hola</p>
+    <button id="btn_registrar" onclick="mostrar_inventario()">Registrar productos</button>
     <button id="btn_solicitar" onclick="mostrar_productos()">Solicitar productos almacén central</button>
     <button id="btn_generar" onclick="mostrar_reportes()">Generar Reportes e Inventario</button>
-    <button id="btn_articulos" onclick="mostrar_solicitud()">Solicitud de artículos del almacén</button>
+    <button id="btn_solicitud_producto" onclick="mostrar_solicitud_producto()">Solicitud de productos del almacén</button>
+    {% if user.is_authenticated %}
     <button id="btn_registro_personas" onclick="mostrar_registro_personas()">Registro de Personas</button>
+    {% endif %}
   </div>
   <div id="buscador_frame" style="padding: 10px; text-align: right;">
     <label for="entry_buscador">Buscar:</label>
@@ -45,7 +94,7 @@
   </div>
   <script>
     function mostrar_inventario() {
-      mostrar_ventana_secundaria("Registrar productos a la base de datos");
+      window.location.href = "{% url 'registrar_productos' %}";
     }
     
     function mostrar_productos() {
@@ -56,12 +105,12 @@
       mostrar_ventana_secundaria("Generar Reportes e Inventario");
     }
     
-    function mostrar_solicitud() {
-      mostrar_ventana_secundaria("Solicitud de artículos del almacén");
+    function mostrar_solicitud_producto() {
+    window.location.href = "{% url 'solicitud_producto' %}";
     }
-    
+
     function mostrar_registro_personas() {
-      mostrar_ventana_secundaria("Registro de Personas");
+      window.location.href = "{% url 'registrar_persona_prototipo' %}";
     }
     
     function buscar() {

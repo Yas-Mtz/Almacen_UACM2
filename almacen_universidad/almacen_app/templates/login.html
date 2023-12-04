@@ -1,125 +1,67 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-        }
+  <title>Iniciar sesión</title>
+  <link href="{% static 'Estilos/styles.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+  
+  <script>
+    function clearFields() {
+      var usernameInput = document.getElementById('username');
+      var passwordInput = document.getElementById('password');
+  
+      usernameInput.value = '';
+      passwordInput.value = '';
+    }
+  </script>
 
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .left-side {
-            background-color: #b12424;
-            color: #ffffff;
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .right-side {
-            background-color: #cccccc;
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        form {
-            width: 100%;
-            max-width: 350px;
-            margin: 0 auto;
-            background-color: #cccccc;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        input {
-            width: calc(100% - 20px);
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-            border-radius: 10px;
-        }
-
-        .button-container {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        button {
-            width: calc(50% - 10px);
-            padding: 10px;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .btn-acceder {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .btn-cancelar {
-            background-color: #b12424;
-            color: white;
-        }
-
-        .logo {
-            width: 50%;
-            height: auto;
-        }
-
-        h2 {
-            display: none;
-        }
-    </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="left-side">
-            {% if error_message %}
-                <p>{{ error_message }}</p>
-            {% endif %}
-            <img class="logo" src="https://es.blog.documentfoundation.org/wp-content/uploads/sites/6/2022/07/Universidad-Autonoma-de-la-Ciudad-de-Mexico-UACM_logo-lema.jpg" alt="Logo UACM">
-        </div>
-        <div class="right-side">
-            <form method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-                <label for="username">Usuario:</label>
-                <input type="text" name="username" required><br>
-                <label for="password">Contraseña:</label>
-                <input type="password" name="password" required><br>
-                <div class="button-container">
-                    <button class="btn-acceder" type="submit">Acceder</button>
-                    <button class="btn-cancelar" type="button">Cancelar</button>
-                </div>
-            </form>
-        </div>
+  <div class="container">
+    <div class="left-side">
+      {% if error_message %}
+        <p>{{ error_message }}</p>
+      {% endif %}
+      
+      <img
+        class="image"
+        src="https://i0.wp.com/revistavoces.net/wp-content/uploads/2016/06/escudo_uacm.png?fit=236%2C300"
+        alt="Imagen"
+      />
     </div>
+
+    <div class="overlay"></div> <!-- Capa semitransparente con desenfoque -->
+
+    <div class="right-side">
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+  
+        <div class="login-form">
+          <span style="text-align: center; margin-bottom: 10px">
+            <i class="fas fa-user"></i>
+          </span>
+          <input id="username" name="username" type="text" class="borderInput" placeholder="Usuario" />
+  
+          <span style="text-align: center; margin-bottom: 10px">
+            <i class="fas fa-lock"></i>
+          </span>
+          <input id="password" name="password" type="password" class="borderInput" placeholder="Contraseña" />
+  
+          <div class="button-group">
+            <button type="submit" class="button">
+              <i class="fas fa-sign-in-alt"></i> Acceder
+            </button>
+  
+            <button type="button" onclick="clearFields()" class="button cancel">
+              <i class="fas fa-times"></i> Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
