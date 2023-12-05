@@ -2,74 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Informe de Almacén Escolar</title>
+  <title>Reportes e inventario </title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #333;
-    }
-
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.7);
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    label, input {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    input[type="text"],
-    input[type="number"] {
-      width: 90%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #b30b0b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: pointer;
-      margin-right: 10px;
-    }
-
-    table {
-      max-width: 300px;
-      margin: 20px auto;
-      background-color: #fff;
-      border-collapse: separate;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-
-    th {
-      background-color: rgb(235, 31, 31);
-      color: white;
-    }
+    /* Tu código de estilos */
   </style>
 </head>
 <body>
@@ -86,61 +21,72 @@
 
     <button type="button" id="guardar">Guardar</button>
     <button type="button" id="limpiar">Limpiar</button>
+    <button type="button" id="deshacer">Deshacer</button>
   </form>
 
   <h2>Productos Registrados</h2>
   <table id="productos">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Cantidad</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Los datos registrados se mostrarán aquí -->
-    </tbody>
+    <!-- Tu código de tabla -->
   </table>
 
   <script>
-    // Obtener referencias a elementos del DOM
-    var form = document.getElementById("registro-producto");
-    var guardarButton = document.getElementById("guardar");
-    var limpiarButton = document.getElementById("limpiar");
-    var productosTableBody = document.querySelector("#productos tbody");
+    // Objeto Command para guardar y limpiar
+    const Command = function (execute, undo) {
+      this.execute = execute;
+      this.undo = undo;
+    };
+
+    // Lógica de guardar
+    const guardarCommand = new Command(
+      function () {
+       
+        alert("Producto guardado");
+      },
+      function () {
+      
+        alert("Deshaciendo guardar");
+      }
+    );
+
+    // Lógica de limpiar
+    const limpiarCommand = new Command(
+      function () {
+        document.getElementById("registro-producto").reset();
+      },
+      function () {
+    
+      }
+    );
+    const commandHistory = [];
 
     // Event listener para el botón "Guardar"
-    guardarButton.addEventListener("click", function () {
-      // Obtener los valores del formulario
-      var id = document.getElementById("id").value;
-      var nombre = document.getElementById("nombre").value;
-      var cantidad = document.getElementById("cantidad").value;
+    document.getElementById("guardar").addEventListener("click", function () {
+      // Lógica de ejecutar el comando de guardar
+      guardarCommand.execute();
 
-      // Validar que los campos no estén vacíos
-      if (id && nombre && cantidad) {
-        // Crear una nueva fila en la tabla
-        var newRow = productosTableBody.insertRow();
-        var cell1 = newRow.insertCell(0);
-        var cell2 = newRow.insertCell(1);
-        var cell3 = newRow.insertCell(2);
-
-        // Llenar las celdas con los valores del formulario
-        cell1.textContent = id;
-        cell2.textContent = nombre;
-        cell3.textContent = cantidad;
-
-        // Limpiar el formulario
-        form.reset();
-      } else {
-        alert("Por favor, complete todos los campos del formulario.");
-      }
+         commandHistory.push(guardarCommand);
     });
 
     // Event listener para el botón "Limpiar"
-    limpiarButton.addEventListener("click", function () {
-      form.reset();
+    document.getElementById("limpiar").addEventListener("click", function () {
+      // Lógica de ejecutar el comando de limpiar
+      limpiarCommand.execute();
+
+  
+      commandHistory.push(limpiarCommand);
+    });
+
+    // Event listener para el botón "Deshacer"
+    document.getElementById("deshacer").addEventListener("click", function () {
+      // Verificar si hay comandos en el historial
+      if (commandHistory.length > 0) {
+        // Obtener el último comando
+        const lastCommand = commandHistory.pop();
+
+        // Lógica de deshacer el último comando
+        lastCommand.undo();
+      }
     });
   </script>
 </body>
 </html>
-
