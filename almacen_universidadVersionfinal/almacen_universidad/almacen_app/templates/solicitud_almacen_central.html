@@ -1,101 +1,61 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <form method="post" action="{% url 'solicitud_almacen_central' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Enviar Solicitud</button>
-    </form>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Nueva Solicitud</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
-            background-size: cover;
-            background-position: center top;
-            background-repeat: no-repeat;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
 
-        .formulario-container {
-            text-align: center;
-        }
-
-        .header {
-            text-align: center;
-            padding: 4px 20px; /* Ajusta el relleno del título */
-        }
-
-        .header h1 {
-            color: black;
-            margin-bottom: 20px;
-            font-size: 2em; /* Ajusta el tamaño del título */
-        }
-
-        .formulario {
-            width: 80%; /* Ajusta el ancho del formulario */
-            margin: 0 auto;
-            padding: 30px;
-            border: 1px solid #ccc;
-            background-color: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-        }
-
-        .formulario label,
-        .formulario select,
-        .formulario input {
-            display: block;
-            margin: 25px auto; /* Ajusta la distancia entre los elementos del formulario */
-        }
-
-        .formulario select,
-        .formulario input {
-            width: 100%;
-            border: none;
-            border-radius: 30px;
-            padding: 5px; /* Ajusta el relleno del formulario */
-            font-size: 15px; /* Ajusta el tamaño del texto en el formulario */
-        }
-
-        .formulario button {
-            background-color: #b12424;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            padding: 10px 10px; /* Ajusta el tamaño del botón */
-            cursor: pointer;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3076/3076061.png" type="image/x-icon">
+    <link href="{% static 'Estilos/styles6.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 </head>
 <body>
     <div class="formulario-container">
         <div class="header">
             <h1>Registro de Nueva Solicitud</h1>
         </div>
-        <div class="formulario">
-            <form method="post" action="{% url 'solicitud_producto' %}">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Enviar Solicitud</button>
-                <button type="button" onclick="limpiarCampos()">Limpiar Campos</button>
-            </form>
-        </div>
+        <div class="overlay"></div> <!-- Capa semitransparente con desenfoque -->
+        <form method="post" action="{% url 'solicitud_producto' %}" class="formulario">
+            {% csrf_token %}
+            <label for="id_producto">ID del Producto</label>
+            <input type="text" id="id_producto" name="id_producto" required>
+
+            <label for="nombre_producto">Nombre del Producto</label>
+            <input type="text" id="nombre_producto" name="nombre_producto" required>
+
+            <label for="cantidad">Cantidad</label>
+            <input type="number" id="cantidad" name="cantidad" required>
+
+            <div class="adjuntar-archivo">
+                <label for="archivo_adjunto">Adjuntar Archivo</label>
+                <input type="file" id="archivo_adjunto" name="archivo_adjunto" accept=".pdf,.doc,.docx" required>
+            </div>
+
+            <label for="cuerpo_correo">Cuerpo del Correo </label>
+            <textarea id="cuerpo_correo" name="cuerpo_correo" rows="4" required></textarea>
+
+            <div class="botones">
+                <button type="submit">Enviar</button>
+                <button type="button" class="borrar" onclick="command.execute('limpiarCampos')">Borrar</button>
+            </div>
+        </form>
     </div>
     <script>
-        function limpiarCampos() {
-            var campos = document.querySelectorAll('input:not([name="id_almacen"]), select');
+        var Command = function (execute, undo, value) {
+            this.execute = execute;
+            this.undo = undo;
+            this.value = value;
+        }
+
+        var limpiarCampos = function (value) {
+            var campos = document.querySelectorAll('input, textarea');
             campos.forEach(function (campo) {
                 campo.value = '';
             });
         }
+
+        var command = new Command(limpiarCampos);
     </script>
 </body>
 </html>

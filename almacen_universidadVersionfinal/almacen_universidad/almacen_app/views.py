@@ -1,16 +1,23 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from typing import Any
+from django.http import (
+    HttpResponseRedirect,
+    HttpResponsePermanentRedirect,
+    HttpResponse
+)
 from django.contrib.auth.decorators import login_required
-from .models import Persona, Rol, Singleton, Producto, ProductoFactory, Solicitud # Importamos el modelo persona, rol y SINGLETON
-from almacen_app.models import Persona # importamos el modelo persona desde la app
-from .forms import RegistroPersonaForm # Formulario
-from django.contrib.auth.hashers import make_password # Cifrado
-from .forms import SolicitudForm
-from .commands import SolicitudCommand
+from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect
-from .forms import SolicitudAlmacenCentralForm 
+from django.contrib.auth.hashers import make_password
+from almacen_app.models import Persona as AlmacenPersona  # Importamos el modelo Persona desde la app almacen_app
+from .models import Persona, Rol, Singleton, Producto, ProductoFactory, Solicitud
+from .forms import RegistroPersonaForm, SolicitudForm, SolicitudAlmacenCentralForm
+from .commands import SolicitudCommand
 
+# Resto del código
+
+
+# Resto del código
 
 def login_view(request): #logica para el registro de personas
     if request.method == 'POST':
@@ -135,12 +142,12 @@ def registrar_productos(request):
 
     return render(request, 'registrar_productos.html')
 
-def generar_reportes(request):
+def generar_reportes_view(request: Any) -> HttpResponse:
     # Lógica para generar reportes
     return render(request, 'generar_reportes.html')
 
 #Logica para enviar correos 
-def solicitud_almacen_central(request):
+def solicitud_almacen_central_view(request: Any) -> (HttpResponseRedirect | HttpResponsePermanentRedirect | HttpResponse):
     if request.method == 'POST':
         form = SolicitudAlmacenCentralForm(request.POST)
         if form.is_valid():

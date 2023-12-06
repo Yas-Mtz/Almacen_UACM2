@@ -1,16 +1,17 @@
-/* Estilos generales */
+
+/* HOJA DE ESTILO DE  LA PAGINA PRINCIPAL*/
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
+  background-color: #f8f9fa;
 }
 
 /* Estilos para la cabecera */
 #cabecera {
-  background-image: url('https://uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
+  background-image: url('https://889noticias.mx/wp-content/uploads/2020/06/cuautepec-UACM.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: rgb(243, 243, 243);
+  color: rgb(248, 248, 248);
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -24,8 +25,16 @@ body {
   text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Sombra de texto */
 }
 
-/* Estilos para los botones */
+#cabecera .bienvenida {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agrega sombra con offset de 2px en ambas direcciones y un blur de 4px */
+}
+
+/* Estilos para los botones y el marco de la página principal */
 .pagina_principal_frame {
+  padding: 20px;
+  background-color: transparent;
   display: flex;
   justify-content: space-around; /* Espaciado uniforme entre los botones */
   margin-top: 20px;
@@ -49,45 +58,16 @@ body {
 }
 
 .boton:hover {
-  background-color: #2980b9;
+  background-color: #8d0606;
 }
 
 .boton i {
   margin-right: 10px;
 }
 
-/* Cambiar el color de fondo al pasar el mouse sobre el botón */
-.boton:hover {
-  background-color: #8d0606;
-}
-
 /* Agregar animación de escalado al botón al hacer clic */
 .boton:active {
   transform: scale(0.95);
-}
-
-/* Animación de entrada para la ventana emergente */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Animación de salida para la ventana emergente */
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 1;
-    transform: scale(0.8);
-  }
 }
 
 /* Estilos para el buscador */
@@ -122,4 +102,3 @@ body {
 #btn_buscar:hover {
   background-color: #0056b3;
 }
-
