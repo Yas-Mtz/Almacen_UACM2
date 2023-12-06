@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Sistema de Inventario</title>
+    <link rel="icon" href="https://th.bing.com/th/id/R.424f78ebe3cbcb6bc5c61176fe63065f?rik=3RMWpoV9%2bjxHGQ&riu=http%3a%2f%2f1.bp.blogspot.com%2f-fgSc8oDc7nI%2fVlvWnuks_2I%2fAAAAAAAAAsY%2fQog0BC-lSFc%2fs1600%2flogcirculo.png&ehk=S2qPDl%2fn9sZIZjjfyorb8RBHeMQ0p7bcy%2b87onpQJ4A%3d&risl=&pid=ImgRaw&r=0" type="image/x-icon">
+    <link href="{% static 'Estilos/styles2.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+</head>
+<body>
+  
+  <div id="cabecera" style="background-image: url('https://889noticias.mx/wp-content/uploads/2020/06/cuautepec-UACM.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;">
+    <h1 style="margin:0 auto"> Sistema de Inventario </h1>
+  </div>
+
+  <div class="pagina_principal_frame" style="padding: 20px; background-color: transparent;">
+    <button class="boton" onclick="redirigirARegistrarProducto()">
+      <i class="fas fa-plus"></i> Registrar productos a la base de datos
+    </button>
+    <button class="boton" onclick="redirigirASolicitarProductos()">
+      <i class="fas fa-cart-arrow-down"></i> Solicitar productos almacén central
+    </button>
+    <button class="boton" onclick="redirigirAInventario()">
+      <i class="fas fa-chart-bar"></i> Generar Reportes e Inventario
+    </button>
+    <button class="boton" onclick="redirigirASolicitudAlmacenCentral()">
+      <i class="fas fa-shopping-cart"></i> Solicitud de artículos del almacén
+    </button>
+    {% if user.is_authenticated %}
+    <button class="boton" onclick="mostrarRegistroPersonas()">
+      <i class="fas fa-user-plus"></i> Registro de Personas
+    </button>
+
+    {% endif %}
+  </div>
+
+  <div id="buscador_frame" style="padding: 10px; text-align: right;">
+    <label for="entry_buscador">Buscar:</label>
+    <input id="entry_buscador" type="text">
+    <button id="btn_buscar" onclick="buscar()">Buscar</button>
+  </div>
+
+  <script>
+    function redirigirARegistrarProducto() {
+        window.location.href = "{% url 'registrar_productos' %}";
+    }
+
+    function redirigirAGenerarReportes() {
+        window.location.href = "{% url 'generar_reportes' %}";
+    }
+
+
+    {% if user.is_authenticated %}
+    function mostrarRegistroPersonas() {
+      window.location.href = "{% url 'registrar_persona_prototipo' %}";
+    }
+    {% endif %}
+
+    function buscar() {
+      var query = document.getElementById("entry_buscador").value;
+      // Agregar código para realizar la búsqueda
+    }
+
+    function redirigirASolicitudAlmacenCentral() {
+      window.location.href = "{% url 'solicitud_almacen_central' %}";
+  }
+
+
+  </script>
+</body>
+</html>

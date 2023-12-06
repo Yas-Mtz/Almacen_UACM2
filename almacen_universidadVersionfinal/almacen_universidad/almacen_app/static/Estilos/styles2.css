@@ -1,0 +1,125 @@
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+/* Estilos para la cabecera */
+#cabecera {
+  background-image: url('https://uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: rgb(243, 243, 243);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#cabecera h1 {
+  font-size: 38px; /* Reducir el tamaño del título */
+  margin: 0;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Sombra de texto */
+}
+
+/* Estilos para los botones */
+.pagina_principal_frame {
+  display: flex;
+  justify-content: space-around; /* Espaciado uniforme entre los botones */
+  margin-top: 20px;
+}
+
+.boton {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%; /* Ajustar el ancho de los botones */
+  max-width: 200px; /* Ajustar el ancho máximo */
+  cursor: pointer;
+  background-color:  #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
+
+.boton:hover {
+  background-color: #2980b9;
+}
+
+.boton i {
+  margin-right: 10px;
+}
+
+/* Cambiar el color de fondo al pasar el mouse sobre el botón */
+.boton:hover {
+  background-color: #8d0606;
+}
+
+/* Agregar animación de escalado al botón al hacer clic */
+.boton:active {
+  transform: scale(0.95);
+}
+
+/* Animación de entrada para la ventana emergente */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animación de salida para la ventana emergente */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(0.8);
+  }
+}
+
+/* Estilos para el buscador */
+#buscador_frame {
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#entry_buscador {
+  width: 200px;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 20px;
+  font-size: 15px;
+  outline: none;
+}
+
+#btn_buscar {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+#btn_buscar:hover {
+  background-color: #0056b3;
+}
+
