@@ -1,0 +1,33 @@
+#cabecera {
+  background-color: #b12424;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#cabecera h1 {
+  margin: 0;
+}
+
+#cabecera img {
+  width: 100px;
+  height: auto;
+}
+
+#pagina_principal_frame {
+  padding: 20px;
+  background-color: #dddbe0;
+  text-align: right;
+}
+
+#pagina_principal_frame button {
+  display: block;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+#pagina_principal_frame button:hover {
+  transform: scale(1.1);
+}
