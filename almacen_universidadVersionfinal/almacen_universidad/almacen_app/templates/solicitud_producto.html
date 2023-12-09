@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Nueva Solicitud</title>
+    <link rel="icon" href="https://th.bing.com/th/id/OIP.Iuq-Qr4l4LjFcvCyflnI7wHaHa?rs=1&pid=ImgDetMain" type="image/x-icon">
+    <link href="{% static 'Estilos/styles7.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+</head>
+<body>
+    <div class="formulario-container">
+        <div class="header">
+            <h1>Registro de Nueva Solicitud</h1>
+        </div>
+        <div class="formulario">
+            <form method="post" action="{% url 'solicitud_producto' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Enviar Solicitud</button>
+                <button type="button" onclick="limpiarCampos()">Limpiar Campos</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        function limpiarCampos() {
+            var campos = document.querySelectorAll('input:not([name="id_almacen"]), select');
+            campos.forEach(function (campo) {
+                campo.value = '';
+            });
+        }
+    </script>
+</body>
+</html>
