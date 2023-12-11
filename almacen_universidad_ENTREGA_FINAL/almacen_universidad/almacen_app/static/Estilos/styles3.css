@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
+    background-size: cover ; /* Ajusta la imagen al tamaño de la ventana del navegador */
+    background-position: center top; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+
+.header {
+text-align: center;
+padding: 20px;
+}
+
+.header h1 {
+    color: black; /* Cambié el color del texto a negro */
+}
+
+.formulario {
+width: 50%;
+margin: 0 auto;
+padding: 20px;
+border: 1px solid #ccc;
+background-color: rgba(255, 255, 255, 0.8); /* Cambié a un fondo transparente */
+border-radius: 10px;
+}
+
+.formulario label,
+.formulario select,
+.formulario input {
+display: block;
+margin: 10px auto;
+}
+
+.formulario select,
+.formulario input {
+width: 70%; /*modificado */
+border: none;
+border-radius: 30px;
+padding: 5px; /* Reduzco el relleno */
+font-size: 11px; /* Reduzco el tamaño de la letra */
+}
+
+.formulario button {
+background-color: #b12424;
+color: white;
+border: none;
+border-radius: 30px;
+padding: 10px 20px;
+cursor: pointer;
+margin-top: 10px;
+}
