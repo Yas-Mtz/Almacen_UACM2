@@ -1,83 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Registro de Productos</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg'); /* Ruta de tu imagen de fondo */
-      background-size: cover; /* Ajusta la imagen al tamaño de la ventana */
-      background-repeat: no-repeat; /* Evita que la imagen se repita */
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-    }
+  
+  <link rel="icon" href="https://th.bing.com/th/id/OIP.dP52sbCeUh3XvN-N2JugJgHaHa?rs=1&pid=ImgDetMain" type="image/x-icon">
+  <link href="{% static 'Estilos/styles3.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 
-    h1, h2 {
-      text-align: center;
-      color: #333;
-    }
 
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color:rgba(255, 255, 255, 0.7);
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    label, input {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    input[type="text"],
-    input[type="number"] {
-      width: 90%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #b30b0b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: auto;
-      margin-right: 10px;
-    }
-
-    table {
-      max-width: 300px;
-      margin: 20px auto;
-      background-color: #fff;
-      border-collapse: separate;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      display: right; 
-      flex-direction: column; 
-      align-items: right;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-
-    th {
-      background-color: rgb(235, 31, 31);
-      color: white;
-    }
-  </style>
 </head>
 <body>
   <h1>Registro de Productos</h1>
-  <form id="registro-producto">
+  
+  <form id="registro-producto" method="post">
     <label for="id">ID del Producto:</label>
     <input type="text" id="id" name="id" required>
 
@@ -111,14 +48,14 @@
     var guardarButton = document.getElementById("guardar");
     var limpiarButton = document.getElementById("limpiar");
     var productosTableBody = document.querySelector("#productos tbody");
-
+  
     // Event listener para el botón "Guardar"
     guardarButton.addEventListener("click", function () {
       // Obtener los valores del formulario
       var id = document.getElementById("id").value;
       var nombre = document.getElementById("nombre").value;
       var cantidad = document.getElementById("cantidad").value;
-
+  
       // Validar que los campos no estén vacíos
       if (id && nombre && cantidad) {
         // Crear una nueva fila en la tabla
@@ -126,23 +63,64 @@
         var cell1 = newRow.insertCell(0);
         var cell2 = newRow.insertCell(1);
         var cell3 = newRow.insertCell(2);
-
+  
         // Llenar las celdas con los valores del formulario
         cell1.textContent = id;
         cell2.textContent = nombre;
         cell3.textContent = cantidad;
-
+  
         // Limpiar el formulario
         form.reset();
-      } else {
-        alert("Por favor, complete todos los campos del formulario.");
+  
+        if (id && nombre && cantidad && cantidad > 0) {
+          // Validación exitosa: todos los campos están completos y la cantidad es positiva
+  
+          // Enviar los datos al servidor utilizando fetch
+          fetch("registrar_productos/", {
+            method: "POST", 
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: id,
+              nombre: nombre,
+              cantidad: cantidad,
+            }),
+          })
+            .then(function (response) {
+              if (response.ok) {
+                // El servidor aceptó los datos correctamente
+                return response.json();
+              } else {
+                throw new Error("Error al enviar los datos al servidor.");
+              }
+            })
+            .then(function (data) {
+              // Aquí puedes manejar la respuesta del servidor si es necesario
+              console.log("Respuesta del servidor:", data);
+  
+              // Luego, puedes agregar una fila a la tabla con los datos registrados
+              var newRow = document.createElement("tr");
+              newRow.innerHTML = `
+                <td>${id}</td>
+                <td>${nombre}</td>
+                <td>${cantidad}</td>
+              `;
+              productosTableBody.appendChild(newRow);
+  
+              // Limpiar los campos del formulario
+              document.getElementById("id").value = "";
+              document.getElementById("nombre").value = "";
+              document.getElementById("cantidad").value = "";
+            })
+            .catch(function (error) {
+              console.error("Error:", error);
+              alert("Hubo un problema al enviar los datos al servidor. Inténtalo de nuevo más tarde.");
+            });
+        } else {
+          alert("Por favor, completa todos los campos y asegúrate de que la cantidad sea un número positivo.");
+        }
       }
     });
-
-    // Event listener para el botón "Limpiar"
-    limpiarButton.addEventListener("click", function () {
-      form.reset();
-    });
   </script>
-</body>
-</html>
+  

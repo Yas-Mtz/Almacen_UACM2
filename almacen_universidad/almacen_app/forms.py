@@ -2,7 +2,6 @@ from django import forms
 from django.core.exceptions import ValidationError  # Validación correo 
 from .models import Solicitud, Producto, Persona, Almacen
 
-# Formulario para el registro de una une persona
 class RegistroPersonaForm(forms.Form):
     id_rol = forms.CharField(max_length=255)
     nombre = forms.CharField(max_length=255)
@@ -44,3 +43,12 @@ class SolicitudForm(forms.ModelForm):
         model = Solicitud
         fields = ['tipo_almacen', 'nombre_producto', 'nombre_persona', 'cantidad']
 #######################
+
+
+#clase para enviar correos 
+from django import forms
+
+class SolicitudAlmacenCentralForm(forms.Form):
+    campo_1 = forms.CharField(label='Campo 1', max_length=100)
+    campo_2 = forms.IntegerField(label='Campo 2')
+    # Agrega más campos según tus necesidades

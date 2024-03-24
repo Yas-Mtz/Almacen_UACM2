@@ -1,9 +1,12 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html>
 <head>
   <title>Iniciar sesión</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/456/456112.png" type="image/x-icon">
+  
+
+  <!-- Enlace al archivo CSS -->
   <link href="{% static 'Estilos/styles.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
   
@@ -20,20 +23,23 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container" style="border-radius: 35px;"> 
     <div class="left-side">
       {% if error_message %}
         <p>{{ error_message }}</p>
       {% endif %}
       
       <img
-        class="image"
+        class="image" style="width: 185px;"
         src="https://i0.wp.com/revistavoces.net/wp-content/uploads/2016/06/escudo_uacm.png?fit=236%2C300"
         alt="Imagen"
       />
+      
+      <p class="saludo">BIENVENIDO AL ALMACÉN DE LA UACM</p>
     </div>
 
-    <div class="overlay"></div> <!-- Capa semitransparente con desenfoque -->
+    <!-- Capa semitransparente con desenfoque -->
+    <div class="overlay"></div> 
 
     <div class="right-side">
       <form method="post" action="{% url 'login' %}">
@@ -43,22 +49,28 @@
           <span style="text-align: center; margin-bottom: 10px">
             <i class="fas fa-user"></i>
           </span>
-          <input id="username" name="username" type="text" class="borderInput" placeholder="Usuario" />
+          <input id="username" name="username" type="text" class="borderInput" placeholder="Usuario" style="border-radius: 10px;"/>
   
           <span style="text-align: center; margin-bottom: 10px">
             <i class="fas fa-lock"></i>
           </span>
-          <input id="password" name="password" type="password" class="borderInput" placeholder="Contraseña" />
+          <input id="password" name="password" type="password" class="borderInput" placeholder="Contraseña" style="border-radius: 10px;"/>
   
           <div class="button-group">
-            <button type="submit" class="button">
+            <button type="submit" class="button" style="border-radius: 10px;">
               <i class="fas fa-sign-in-alt"></i> Acceder
             </button>
   
-            <button type="button" onclick="clearFields()" class="button cancel">
+            <button type="button" onclick="clearFields()" class="button cancel" style="border-radius: 10px;">
               <i class="fas fa-times"></i> Cancelar
             </button>
           </div>
+          
+          <div class="remember-checkbox">
+            <input type="checkbox" id="remember" name="remember" >
+            <label for="remember">Recordar usuario</label>
+          </div>
+          
         </div>
       </form>
     </div>

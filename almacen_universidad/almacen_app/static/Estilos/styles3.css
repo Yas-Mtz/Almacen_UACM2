@@ -1,52 +1,72 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
-    background-size: cover ; /* Ajusta la imagen al tamaño de la ventana del navegador */
-    background-position: center top; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita la repetición de la imagen */
-}
+/* HOJA DE ESTILO DE REGISTRAR PRODUCTOS */
 
-.header {
-text-align: center;
-padding: 20px;
-}
 
-.header h1 {
-    color: black; /* Cambié el color del texto a negro */
-}
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg'); /* Ruta de tu imagen de fondo */
+      background-size: cover; /* Ajusta la imagen al tamaño de la ventana */
+      background-repeat: no-repeat; /* Evita que la imagen se repita */
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
 
-.formulario {
-width: 50%;
-margin: 0 auto;
-padding: 20px;
-border: 1px solid #ccc;
-background-color: rgba(255, 255, 255, 0.8); /* Cambié a un fondo transparente */
-border-radius: 10px;
-}
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
 
-.formulario label,
-.formulario select,
-.formulario input {
-display: block;
-margin: 10px auto;
-}
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color:rgba(255, 255, 255, 0.7);
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
 
-.formulario select,
-.formulario input {
-width: 70%; /*modificado */
-border: none;
-border-radius: 30px;
-padding: 5px; /* Reduzco el relleno */
-font-size: 11px; /* Reduzco el tamaño de la letra */
-}
+    label, input {
+      display: block;
+      margin-bottom: 10px;
+    }
 
-.formulario button {
-background-color: #b12424;
-color: white;
-border: none;
-border-radius: 30px;
-padding: 10px 20px;
-cursor: pointer;
-margin-top: 10px;
-}
+    input[type="text"],
+    input[type="number"] {
+      width: 90%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #b30b0b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: auto;
+      margin-right: 10px;
+    }
+
+    table {
+      max-width: 300px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-collapse: separate;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      display: right; 
+      flex-direction: column; 
+      align-items: right;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: rgb(235, 31, 31);
+      color: white;
+    }
