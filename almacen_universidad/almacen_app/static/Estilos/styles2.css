@@ -1,18 +1,17 @@
 
-/* Estilos generales */
+/* HOJA DE ESTILO DE  LA PAGINA PRINCIPAL*/
+
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
+  background-color: #f8f9fa;
 }
 
-/* Estilos para el título */
-
+/* Estilos para la cabecera */
 #cabecera {
-  background-image: url('https://uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
+  background-image: url('https://889noticias.mx/wp-content/uploads/2020/06/cuautepec-UACM.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  color: black;
+  color: rgb(248, 248, 248);
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -20,48 +19,50 @@ body {
   align-items: center;
 }
 
-      #cabecera h1 {
-        font-size: 36px;
-        margin: 0;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra de texto */
-      }
+#cabecera h1 {
+  font-size: 38px; /* Reducir el tamaño del título */
+  margin: 0;
+  text-shadow: 2px 2px 4px rgb(0, 0, 0); /* Sombra de texto */
+}
 
-   /* Estilos para los botones */
-   .pagina_principal_frame {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-  }
+#cabecera .bienvenida {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Agrega sombra con offset de 2px en ambas direcciones y un blur de 4px */
+}
 
-  .boton {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px; /* Bordes redondeados mayores para botones */
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-  }
+/* Estilos para los botones y el marco de la página principal */
+.pagina_principal_frame {
+  padding: 20px;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-around; /* Espaciado uniforme entre los botones */
+  margin-top: 20px;
+}
 
-  .boton i {
-    margin-right: 8px;
-  }
+.boton {
+  margin-bottom: 10px;
+  padding: 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%; /* Ajustar el ancho de los botones */
+  max-width: 200px; /* Ajustar el ancho máximo */
+  cursor: pointer;
+  background-color:  #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+}
 
-  /* Estilos para el botón de cierre de ventana emergente */
-  .cerrar {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 20px;
-  }
-
-
-/* Cambiar el color de fondo al pasar el mouse sobre el botón */
 .boton:hover {
-  background-color: #8d0606; /* Nuevo color de fondo al pasar el mouse */
+  background-color: #8d0606;
+}
+
+.boton i {
+  margin-right: 10px;
 }
 
 /* Agregar animación de escalado al botón al hacer clic */
@@ -69,79 +70,13 @@ body {
   transform: scale(0.95);
 }
 
-/* Efecto de ventana emergente */
-.ventana-emergente {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%; /* Ancho de la ventana */
-  max-width: 600px; /* Ancho máximo si se alcanza */
-  background-color: #e97878;
-  z-index: 1000;
-  padding: 20px;
-  border: 2px solid #000000;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-.cerrar {
-  color: #000000;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Efecto al mostrar la ventana emergente */
-.ventana-emergente.mostrar {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Efecto al ocultar la ventana emergente */
-.ventana-emergente.ocultar {
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(0.8);
-  transition: transform 0.3s, opacity 0.3s;
-}
-
-
-/* Animación de entrada para la ventana emergente */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Animación de salida para la ventana emergente */
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-  to {
-    opacity: 1;
-    transform: scale(0.8);
-  }
-}
-
 /* Estilos para el buscador */
 #buscador_frame {
   text-align: center;
-  margin-top: 20px; /* Agregar margen superior */
-  display: flex; /* Usar flexbox para centrar horizontalmente */
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #entry_buscador {
@@ -152,6 +87,7 @@ body {
   font-size: 15px;
   outline: none;
 }
+
 #btn_buscar {
   background-color: #007bff;
   color: white;
@@ -162,39 +98,7 @@ body {
   cursor: pointer;
   margin-left: 10px;
 }
+
 #btn_buscar:hover {
   background-color: #0056b3;
-}
-
-table {
-  font-family: Arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 20px;
-}
-
-th, td {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-th {
-  background-color: #f2f2f2;
-}
-
-.contenedor-tabla {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.formulario-agregar {
-  width: 100%;
-  margin-top: 20px;
-}
-
-.formulario-agregar label {
-  display: block;
-  margin-bottom: 5px;
 }

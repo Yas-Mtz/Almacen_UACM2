@@ -1,109 +1,47 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Registro de Productos</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg'); /* Ruta de tu imagen de fondo */
-      background-size: cover; /* Ajusta la imagen al tamaño de la ventana */
-      background-repeat: no-repeat; /* Evita que la imagen se repita */
-      background-color: #f2f2f2;
-      margin: 0;
-      padding: 0;
-    }
-
-    h1, h2 {
-      text-align: center;
-      color: #333;
-    }
-
-    form {
-      max-width: 400px;
-      margin: 0 auto;
-      background-color:rgba(255, 255, 255, 0.7);
-      padding: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    label, input {
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    input[type="text"],
-    input[type="number"] {
-      width: 90%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #b30b0b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 10px 20px;
-      cursor: auto;
-      margin-right: 10px;
-    }
-
-    table {
-      max-width: 300px;
-      margin: 20px auto;
-      background-color: #fff;
-      border-collapse: separate;
-      border-radius: 5px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-      display: right; 
-      flex-direction: column; 
-      align-items: right;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: center;
-    }
-
-    th {
-      background-color: rgb(235, 31, 31);
-      color: white;
-    }
-  </style>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Productos</title>
+    <link rel="stylesheet" href="{% static 'Estilos/styles8.css' %}">
 </head>
 <body>
-  <h1>Registro de Productos</h1>
-  <form id="registro-producto">
-    <label for="id">ID del Producto:</label>
-    <input type="text" id="id" name="id" required>
+  <div class="formulario-container">
+    <div class="formulario">
+      <h1>Registro de Productos</h1>
+      <form id="registro-producto" method="post">
+        {% csrf_token %}
+        <label for="id">ID del Producto:</label>
+        <input type="text" id="id" name="id" required>
+      
+        <label for="nombre">Nombre del Producto:</label>
+        <input type="text" id="nombre" name="nombre" required>
+      
+        <label for="cantidad">Cantidad del Producto:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
+      
+        <button type="submit" id="guardar">Guardar</button>
+        <button type="reset" id="limpiar">Limpiar</button>
+      </form>
+    </div>
 
-    <label for="nombre">Nombre del Producto:</label>
-    <input type="text" id="nombre" name="nombre" required>
-
-    <label for="cantidad">Cantidad del Producto:</label>
-    <input type="number" id="cantidad" name="cantidad" required>
-
-    <button type="button" id="guardar">Guardar</button>
-    <button type="button" id="limpiar">Limpiar</button>
-  </form>
-
-  <h2>Productos Registrados</h2>
-  <table id="productos">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Cantidad</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Los datos registrados se mostrarán aquí -->
-    </tbody>
-  </table>
+    <div id="productos" class="formulario" style="width: 35%;"> <!-- Ajuste del ancho del contenedor -->
+      <h1 style="font-size: 2em;">Productos Registrados</h1> <!-- Reducción del tamaño del título -->
+      <table>
+          <thead>
+              <tr>
+                <th class="blue-text">ID</th>
+                <th class="blue-text">Producto</th>
+                <th class="blue-text">Cantidad</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Los datos registrados se mostrarán aquí -->
+          </tbody>
+      </table>
+  </div>
 
   <script>
     // Obtener referencias a elementos del DOM
