@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Nueva Solicitud</title>
+    <link rel="icon" href="https://th.bing.com/th/id/OIP.Iuq-Qr4l4LjFcvCyflnI7wHaHa?rs=1&pid=ImgDetMain" type="image/x-icon">
+    <link href="{% static 'Estilos/styles7.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
+    <style>
+        /* Estilos para el botón */
+        #qrButton {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        #qrButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="formulario-container">
+        <div class="header">
+            <h1>Registro de Nueva Solicitud</h1>
+        </div>
+        <div class="formulario">
+            <form method="post" action="{% url 'solicitud_producto' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Enviar Solicitud</button>
+                <button type="button" onclick="limpiarCampos()">Limpiar Campos</button>
+            </form>
+        </div>
+    </div>
+    <div id="reader"></div>
+    <!-- Botón para mostrar el escáner de QR -->
+    <button id="qrButton" onclick="toggleScanner()">
+        <i class="fas fa-qrcode"></i> Escanear QR
+    </button>
+    <!-- Mostrar el código QR -->
+    <div id="result"></div>
+    <!-- Mostrar el escáner de QR -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script>
+        var scannerVisible = false;
+        var htmlScanner = null;
+
+        function toggleScanner() {
+            if (scannerVisible) {
+                htmlScanner.stop();
+                document.getElementById('reader').style.display = 'none';
+                document.getElementById('result').style.display = 'none';
+                scannerVisible = false;
+            } else {
+                htmlScanner.render(onScanSuccess);
+                document.getElementById('reader').style.display = 'block';
+                document.getElementById('result').style.display = 'block';
+                scannerVisible = true;
+            }
+        }
+
+        function limpiarCampos() {
+            var campos = document.querySelectorAll('input:not([name="id_almacen"]), select');
+            campos.forEach(function (campo) {
+                campo.value = '';
+            });
+        }
+
+        function domReady(fn) {
+            if (document.readyState === "complete" || document.readyState === "interactive") {
+                setTimeout(fn, 1);
+            } else {
+                document.addEventListener("DOMContentLoaded", fn);
+            }
+        }
+
+        domReady(function() {
+            htmlScanner = new Html5QrcodeScanner(
+                "reader", { fps: 10, qrbox: 250 }
+            );
+        });
+
+        function onScanSuccess(decodedText, decodedResult) {
+            var resultContainer = document.getElementById('result');
+            if (resultContainer) {
+                resultContainer.innerHTML = 'Tu QR es: ' + decodedText;
+            }
+        }
+    </script>
+</body>
+</html>
