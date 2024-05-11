@@ -1,0 +1,23 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Solicitud`(IN p_id INT, IN p_cantidad INT, IN p_id_almacen INT, IN p_id_persona INT, IN p_id_producto INT)
+BEGIN
+    DECLARE id_solicitud INT;
+
+    -- Insertar una nueva solicitud en la base de datos y obtener su ID asignado
+    INSERT INTO almacen_app_solicitud (tipo_almacen, nombre_persona, nombre_producto, cantidad, fecha_solicitud, id_almacen_id, id_persona_id, id_producto_id)
+    VALUES (
+        (SELECT tipo_almacen FROM almacen_app_almacen WHERE id_almacen = p_id_almacen),
+        (SELECT CONCAT(nombre, ' ', apellido_paterno, ' ', apellido_materno) FROM almacen_app_persona WHERE id_persona = p_id_persona),
+        (SELECT nombre_producto FROM almacen_app_producto WHERE id_producto = p_id_producto),
+        p_cantidad,
+        NOW(),
+        p_id_almacen,
+        p_id_persona,
+        p_id_producto
+    );
+
+    -- Obtener el ID de la solicitud recién insertada
+    SET id_solicitud = LAST_INSERT_ID();
+
+    -- Devolver el ID de la solicitud asignada
+    SELECT id_solicitud;
+END
