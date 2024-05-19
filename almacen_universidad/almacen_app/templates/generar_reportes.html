@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>Consulta Codigo Postal</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}" />
+  <!-- Agregar enlaces a los estilos de Bootstrap Datepicker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" href="#">Tasky</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto ml-5"></ul>
+    </div>
+  </nav>
+  <!-- JavaScript -->
+  <script src="{% static 'jquery-3.5.1.js' %}"></script>
+  <script src="{% static 'bootstrap.bundle.min.js' %}"></script>
+  <!-- Agregar scripts para Bootstrap Datepicker -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.es.min.js"></script>
+
+  {% block content %}
+  <!-- Contenido principal -->
+  <div class="container">
+    <div class="row pt-5">
+      <div class="col-6 offset-3">
+        <!-- Formulario de búsqueda -->
+        <form id="formAdd" action="obtener_resultados" autocomplete="off">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-12">
+              <div class="form-group validate">
+                <label for="">Fecha de Inicio</label>
+                <!-- Calendario para fecha de inicio -->
+                <input type="text" id="fecha_inicio" name="fecha_inicio" class="form-control" />
+              </div>
+              <div class="form-group validate">
+                <label for="">Fecha de Fin</label>
+                <!-- Calendario para fecha de fin -->
+                <input type="text" id="fecha_fin" name="fecha_fin" class="form-control" />
+              </div>
+            </div>
+            <div class="col-6">
+              <!-- Botón de búsqueda -->
+              <button type="submit" class="btn btn-primary pl-5 pr-5 btnbuscar">BUSCAR</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-12">
+        <div id="resultadosBusqueda"></div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+  {% block scripts %}
+  <script>
+    // Inicializar Bootstrap Datepicker para fecha de inicio
+    $('#fecha_inicio').datepicker({
+      format: 'yyyy-mm-dd',
+      language: 'es',
+      autoclose: true,
+      todayHighlight: true
+    });
+
+    // Inicializar Bootstrap Datepicker para fecha de fin
+    $('#fecha_fin').datepicker({
+      format: 'yyyy-mm-dd',
+      language: 'es',
+      autoclose: true,
+      todayHighlight: true
+    });
+
+    // Resto de tu script aquí
+    // ...
+  </script>
+  {% endblock scripts %}
+</body>
+</html>

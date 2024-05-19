@@ -5,7 +5,6 @@ from .commands import Command
 
 
 class Rol(models.Model):
-    # Roles
     DOCENTE = 'docente'
     MANTENIMIENTO = 'mantenimiento'
 
@@ -40,7 +39,7 @@ class Persona(models.Model):
         )
         return new_persona
     
-    # Obtenemos el nombre completo de la persona y sus apellidos para la solicitud de prodouctos
+    # Obtenemos el nombre completo de la persona y sus apellidos
     def __str__(self):
         return f'{self.nombre} {self.apellido_paterno} {self.apellido_materno}'
 
@@ -81,8 +80,9 @@ class Solicitud(models.Model):
     def procesar_solicitud(self):
         if hasattr(self, 'command'):
             self.command.execute()
-            
     # PATRON SINGLETON
+
+
 class Singleton:
     _instance = None  # Variable de clase para almacenar la única instancia de la clase
 
