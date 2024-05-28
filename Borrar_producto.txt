@@ -1,0 +1,26 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `borrar_producto`(
+-- variable de entrada
+    IN p_id_solicitud INT
+)
+BEGIN
+-- declaracion de variables locales 
+    DECLARE p_id_producto INT;
+    DECLARE p_cantidad INT;
+
+    -- Obtener el ID del producto y la cantidad de la solicitud
+    SELECT id_producto_id, cantidad 
+    INTO p_id_producto, p_cantidad  -- asignacion de valores a estas variables 
+	FROM almacen_app_solicitud 
+    WHERE id_solicitud = p_id_solicitud;
+
+    -- Eliminar la solicitud de la tabla almacen_app_solicitud
+    DELETE FROM almacen_app_solicitud 
+    WHERE id_solicitud = p_id_solicitud;
+
+    -- Actualizar la cantidad disponible del producto en la tabla almacen_app_producto
+    -- esta actualización "devuelve" la cantidad (de un producto) de la solictud eliminada a la tabla "almacen_app_producto"
+    UPDATE almacen_app_producto
+    -- suma la cantidad que se tenia en la tabla + la cantidad de la solictud eliminada
+    SET cantidad = cantidad + p_cantidad
+    WHERE id_producto = p_id_producto;
+END
