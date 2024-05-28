@@ -1,0 +1,140 @@
+/* HOJA DE ESTILO DE SOLICITUD ALMACEN CENTRAL */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    backdrop-filter: blur(4px); /* Aplica el desenfoque a la capa */
+}
+
+.formulario-container {
+    text-align: center;
+}
+
+.header {
+    text-align: center;
+    padding: 20px; /* Ajusta el relleno del título */
+}
+
+.header h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2.5em; /* Ajusta el tamaño del título */
+}
+
+.formulario {
+    height: auto;
+    width: 60%; /* Ajusta el ancho del formulario */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario label,
+.formulario select,
+.formulario input,
+.formulario textarea {
+    display: block;
+    margin: 15px auto; /* Ajusta la distancia entre los elementos del formulario */
+}
+
+.formulario select,
+.formulario input,
+.formulario textarea {
+    width: calc(100% - 30px);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px; /* Ajusta el relleno del formulario */
+    font-size: 15px; /* Ajusta el tamaño del texto en el formulario */
+    transition: border-color 0.3s ease; /* Efecto de transición en el borde */
+}
+
+.formulario select:focus,
+.formulario input:focus,
+.formulario textarea:focus {
+    border-color: #4CAF50; /* Cambia el color del borde al enfocar el elemento */
+}
+
+.formulario textarea {
+    resize: vertical;
+}
+
+.formulario button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px; /* Ajusta el tamaño del botón */
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease; /* Efecto de transición en el color de fondo */
+}
+
+.formulario button:hover {
+    background-color: #45a049; /* Cambia el color de fondo al pasar el ratón sobre el botón */
+}
+
+.formulario .adjuntar-archivo {
+    display: block;
+    margin: 15px auto;
+}
+
+.formulario .adjuntar-archivo input {
+    width: 70%;
+}
+
+.formulario .botones {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.formulario .botones button {
+    padding: 10px 20px;
+}
+
+.formulario .botones button.borrar {
+    background-color: rgb(23, 184, 85);
+}
+
+.formulario label {
+    color: #333;
+    font-size: 1.2em;
+}
+
+
+.formulario input:required,
+.formulario textarea:required {
+    border-color: #3c80e7; /* Cambia el color del borde para campos requeridos */
+}
+
+/* Patrón de diseño para campo de archivo */
+.formulario .adjuntar-archivo input {
+    border: 1px solid #3498db; /* Borde azul para resaltar campo de archivo */
+}
+
+/* Patrón de diseño para botones de acción */
+.formulario .botones button {
+    background-color: #3498db;
+    color: white;
+}
+
+.formulario .botones button.borrar {
+    background-color: #e74c3c;
+}
+
+/* Patrón de diseño para transiciones */
+.formulario input,
+.formulario textarea,
+.formulario button {
+    transition: all 0.3s ease;
+}
