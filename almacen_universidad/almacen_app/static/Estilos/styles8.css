@@ -1,0 +1,109 @@
+#Vista para el registro de productos
+
+body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      backdrop-filter: blur(4px); /* Aplica el desenfoque a la capa */
+     }
+  
+      .formulario-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start; /* Alinea los formularios arriba */
+      width: 90%;
+    }
+  
+     .formulario {
+      width: 48%; /* Ancho del formulario */
+      padding: 20px;
+      border: 1px solid #ccc;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  
+      .formulario h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 2.5em; /* Ajusta el tamaño del título */
+    }
+  
+    .formulario label,
+    .formulario input,
+    .formulario button {
+      display: block;
+      margin: 15px auto; /* Ajusta la distancia entre los elementos del formulario */
+    }
+  
+      /* Establece el borde de los cuadros de texto como azul */
+      .formulario input {
+      width: calc(100% - 30px);
+      border: 2px solid #3c80e7; /* Cambia el grosor y el color del borde */
+      border-radius: 5px;
+      padding: 10px; /* Ajusta el relleno del formulario */
+      font-size: 15px; /* Ajusta el tamaño del texto en el formulario */
+      transition: border-color 0.3s ease; /* Efecto de transición en el borde */
+      }
+  
+     .formulario input:focus {
+     border-color: #3498db; /* Cambia el color del borde al enfocar el elemento */
+     }
+  
+      .formulario button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 12px 20px; /* Ajusta el tamaño del botón */
+      cursor: pointer;
+      margin-right: 10px;
+      transition: background-color 0.3s ease; /* Efecto de transición en el color de fondo */
+     }
+  
+     /* Estilos para el botón "Guardar" */
+     #guardar {
+      background-color: #3498db; /* Azul claro */
+      color: white;
+     }
+  
+    #guardar:hover {
+      background-color: #5dade2; /* Azul claro más intenso al pasar el ratón */
+    }
+  
+     /* Estilos para el botón "Limpiar" */
+     #limpiar {
+      background-color: #e74c3c; /* Rojo menos intenso */
+      color: white;
+     }
+  
+     #limpiar:hover {
+      background-color: #d9534f; /* Rojo menos intenso más intenso al pasar el ratón */
+    }
+   
+      table {
+      max-width: 300px;
+      margin: 20px auto;
+      background-color: #fff;
+      border-collapse: separate;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+  
+    table#productos th,
+    table#productos td {
+    border: none; /* Elimina los bordes */
+    color: blue;
+    }
+
+   .blue-text {
+   color: blue; /* Cambia el color del texto a azul */
+  }

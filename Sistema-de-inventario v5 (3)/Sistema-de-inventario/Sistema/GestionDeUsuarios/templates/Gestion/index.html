@@ -1,0 +1,69 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gestion de Usuarios UACM</title>
+    <link href="{% static 'GestionDeUsuarios/styles.css' %}" rel="stylesheet" />
+
+  
+
+    <script>
+      function validateForm() {
+        var usernameInput = document.getElementById('username');
+        var passwordInput = document.getElementById('password');
+
+        var username = usernameInput.value;
+        var password = passwordInput.value;
+
+        // Aquí puedes realizar la validación de los valores ingresados
+        // Por ejemplo, si la contraseña y el ID son incorrectos, muestra un mensaje de error
+        if (username !== 'usuario' || password !== 'contraseña') {
+          alert('Error: Usuario o contraseña incorrectos');
+          return false; // Evita que el formulario se envíe
+        }
+
+        return true; // Permite que el formulario se envíe
+      }
+
+      function clearFields() {
+        var usernameInput = document.getElementById('username');
+        var passwordInput = document.getElementById('password');
+
+        usernameInput.value = '';
+        passwordInput.value = '';
+      }
+    </script>
+
+
+    
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="left">
+        <img
+          class="image"
+          src="https://i0.wp.com/revistavoces.net/wp-content/uploads/2016/06/escudo_uacm.png?fit=236%2C300"
+          alt="Imagen"
+        />
+      </div>
+
+      <div class="right">
+        <div class="login-form">
+          <span style="text-align: center; margin-bottom: 10px">Usuario</span>
+          <input id="username" type="text" class="borderInput" />
+          <span style="text-align: center; margin-bottom: 10px">Contraseña</span>
+          <input id="password" type="password" class="borderInput" />
+          <div class="button-group">
+            <form id="loginForm" onsubmit="return validateForm();" action="{% url 'vista2' %}" method="get">
+              <button type="submit" class="button">Acceder</button>
+            </form>
+
+            <button type="button" onclick="clearFields()" class="button cancel">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

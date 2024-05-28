@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title> Reportes e inventario </title>
+    <link rel="icon" href="https://www.pngmart.com/files/8/Report-PNG-Photos.png" type="image/x-icon">
+    <link href="{% static 'Estilos/styles4.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8i04Ndoq3xM9z0D7bo9K9QQKy4XpL/06Pnb5EC8dtKb5voBbZefYPJl+q" crossorigin="anonymous">
+    
+</head>
+<body>
+    <div class="container">
+        <div class="search-bar">
+            <input type="date" id="start-date" name="start-date">
+            <input type="date" id="end-date" name="end-date">
+            <button type="button" id="search-btn"><i class="fas fa-search"></i> Buscar</button>
+        </div>
+        <button type="button" id="download-btn"><i class="fas fa-file-excel"></i> Descargar Excel</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha registro</th>
+                    <th>ID de usuario</th>
+                    <th>Monto de Productos</th>
+                    <th>Usuario</th>
+                    <th>Cargo</th>
+                    <th>ID Producto</th>
+                    <th>Nombre Producto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí van las filas de la tabla -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Objeto Command para búsqueda y descarga
+            const Command = function (execute) {
+                this.execute = execute;
+            };
+
+            // Lógica de búsqueda
+            const searchCommand = new Command(function () {
+                // Lógica de búsqueda (simulada)
+                alert("Realizando búsqueda");
+            });
+
+            // Lógica de descarga
+            const downloadCommand = new Command(function () {
+                // Lógica de descarga (simulada)
+                alert("Descargando Excel");
+            });
+
+            // Event listener para el botón de búsqueda
+            document.getElementById("search-btn").addEventListener("click", function () {
+                // Lógica de ejecutar el comando de búsqueda
+                searchCommand.execute();
+            });
+
+            // Event listener para el botón de descarga
+            document.getElementById("download-btn").addEventListener("click", function () {
+                // Lógica de ejecutar el comando de descarga
+                downloadCommand.execute();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+/* Estilos generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('https://www.uacm.edu.mx/portals/_default/skins/wcga-uacm/images/Plantel.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: #0a0a0a;
+}
+
+/* Contenedor principal */
+.container {
+    padding: 20px;
+    display: flex; /* Usar flexbox para alinear los elementos */
+    flex-direction: column; /* Dirección de columna para apilar verticalmente */
+}
+
+/* Encabezado */
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+    color: #000000;
+    padding: 10px;
+    background-color: rgba(70, 200, 130, 0.59);
+    border-radius: 90px;
+    width: 1000;
+    height: 30px;
+}
+
+/* Contenedor de la barra de búsqueda */
+.search-container {
+    text-align: right;
+    margin: 10px 0;
+    border-radius: 90px;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+    max-width: calc(70% - 20px); /* Ajustar el ancho de la tabla al 70% del contenedor menos el margen */
+    margin-right: 20px; /* Agregar margen derecho para separar de los botones */
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    height: 150px;
+    background-color: rgba(231, 238, 234, 0.788);
+    border-radius: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #ffffff;
+}
+
+/* Estilos para el contenedor de la tabla y los botones */
+.table-buttons-container {
+    display: flex;
+    flex-direction: row; /* Cambiar a fila para alinear horizontalmente */
+    justify-content: space-between;
+    margin-top: 20px; /* Agregar margen arriba para separar de la barra de búsqueda */
+}
+
+/* Estilos para los botones */
+.buttons {
+    width: 30%; /* Ancho uniforme para los botones */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    border-radius: 90px;
+}
+
+/* Botones */
+button {
+    width: 100%; /* Ancho del botón al 100% del contenedor */
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* Estilos para botones específicos */
+button:nth-of-type(1) {
+    background-color: #ff9800; /* Anaranjado */
+    color: #ffffff;
+}
+
+button:nth-of-type(2) {
+    background-color: #3498db; /* Azul */
+    color: #ffffff;
+}
+
+button:nth-of-type(3) {
+    background-color: #e74c3c; /* Rojo */
+    color: #ffffff;
+}
+
+/* Barra de búsqueda */
+.search-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(169, 169, 175, 0.966);
+    color: #110f0fce;
+    width: fit-content; /* Ajusta el ancho al contenido */
+    margin-right: 20px; /* Margen a la derecha para separar de la tabla */
+}

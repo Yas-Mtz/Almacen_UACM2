@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reportes e inventario </title>
+  <style>
+    /* Tu código de estilos */
+  </style>
+</head>
+<body>
+  <h1>Informe de Almacén Escolar</h1>
+  <form id="registro-producto">
+    <label for="id">ID del Producto:</label>
+    <input type="text" id="id" name="id" required>
+
+    <label for="nombre">Nombre del Producto:</label>
+    <input type="text" id="nombre" name="nombre" required>
+
+    <label for="cantidad">Cantidad del Producto:</label>
+    <input type="number" id="cantidad" name="cantidad" required>
+
+    <button type="button" id="guardar">Guardar</button>
+    <button type="button" id="limpiar">Limpiar</button>
+    <button type="button" id="deshacer">Deshacer</button>
+  </form>
+
+  <h2>Productos Registrados</h2>
+  <table id="productos">
+    <!-- Tu código de tabla -->
+  </table>
+
+  <script>
+    // Objeto Command para guardar y limpiar
+    const Command = function (execute, undo) {
+      this.execute = execute;
+      this.undo = undo;
+    };
+
+    // Lógica de guardar
+    const guardarCommand = new Command(
+      function () {
+       
+        alert("Producto guardado");
+      },
+      function () {
+      
+        alert("Deshaciendo guardar");
+      }
+    );
+
+    // Lógica de limpiar
+    const limpiarCommand = new Command(
+      function () {
+        document.getElementById("registro-producto").reset();
+      },
+      function () {
+    
+      }
+    );
+    const commandHistory = [];
+
+    // Event listener para el botón "Guardar"
+    document.getElementById("guardar").addEventListener("click", function () {
+      // Lógica de ejecutar el comando de guardar
+      guardarCommand.execute();
+
+         commandHistory.push(guardarCommand);
+    });
+
+    // Event listener para el botón "Limpiar"
+    document.getElementById("limpiar").addEventListener("click", function () {
+      // Lógica de ejecutar el comando de limpiar
+      limpiarCommand.execute();
+
+  
+      commandHistory.push(limpiarCommand);
+    });
+
+    // Event listener para el botón "Deshacer"
+    document.getElementById("deshacer").addEventListener("click", function () {
+      // Verificar si hay comandos en el historial
+      if (commandHistory.length > 0) {
+        // Obtener el último comando
+        const lastCommand = commandHistory.pop();
+
+        // Lógica de deshacer el último comando
+        lastCommand.undo();
+      }
+    });
+  </script>
+</body>
+</html>
