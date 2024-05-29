@@ -1,0 +1,43 @@
+DATOS QUE SE USARON PARA REALIZAR PRUEBAS CON EL APARTADO DE "SOLICITUDES" Y PARA QUE LAS RESTRCCIONES SE HAGAN VALIDAS EN LA BASE DE DATOS SON:
+
+***************** los id´s para que se hagan validas las restricciones son *****************
+
+-- INSERTAR DATOS  ALMACEN_APP_ALMACEN
+
+insert into	almacen_app_rol (id_rol, nombre_rol) values
+(1, 'Encargado'),
+(3, 'Ayudante gral.'),
+(3, 'Maestro'),
+(4, 'Personal de Limpieza');
+
+-- insertar datos en almacen_app_almacen; muestra los tipos de almacenes donde se pueden hacer solicitudes
+
+insert into	almacen_app_almacen (id_almacen, tipo_almacen, direccion, correo, telefono) values
+(1, 'Central', 'direccion1', 'almacenCent@uacm.edu.mx', '5512347894'),
+(2, 'Cuautepec', 'direccion2', 'cuautepec@uacm.edu.mx', '5512317877');
+
+-- insertar datos en almacen_app_persona; en este apartado se ingresaron los datos de las personas desde la bd 
+
+insert into	almacen_app_persona (id_persona, nombre, apellido_paterno, apellido_materno, telefono, correo, contrasena, id_rol_id) values
+(321, 'Maria', 'Perez', 'Perez', '5511964125', 'maria.perez@uacm.edu.mx', 'contrasena1', 1 ) ,
+(147, 'Pedro', 'Hernandez', 'Hernandez', '5521179877', 'pedro.hernandez@uacm.edu.mx', 'contrasena2', 2 ) ,
+(147, 'Luis', 'Perez', 'Hernandez', '5614789600', 'luis.perez@uacm.edu.mx', 'contrasena3', 3 ) ,
+(963, 'José', 'Robles', 'Hernandez', '5618877432', 'jose.hernandez@uacm.edu.mx', 'contrasena4', 4 );
+
+-- insertar datos en almacen_app_producto; sugerencia para insertar los datos de productos a la bd 
+insert into almacen_app_producto (id_producto, nombre_producto, cantidad) values
+(119, 'Lápiz HB', 50),
+(120, 'Borrador de goma', 40),
+(121, 'Cuaderno de espiral', 30),
+(122, 'Plumones de pizarra', 20),
+(123, 'Tijeras de oficina', 15),
+(124, 'Papel higiénico', 60),
+(125, 'Jabón líquido', 35),
+(126, 'Toallas de papel', 25),
+(127, 'Desinfectante multiusos', 10),
+(128, 'Detergente para ropa', 20),
+(129, 'Guantes de látex', 40),
+(130, 'Escoba y recogedor', 12),
+(131, 'Paños de limpieza', 30),
+(132, 'Bolsas de basura', 50),
+(133, 'Esponjas para lavar platos', 20);

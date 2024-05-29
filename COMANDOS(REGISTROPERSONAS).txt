@@ -1,0 +1,97 @@
+DATOS Y COMANDOS QUE SE UTILIZARON PARA EL APARTADO DE "REGISTRO DE PERSONAS"
+
+python manage.py makemigrations
+python manage.py migrate
+-------------------------------------------------------------------
+python manage.py shell
+
+from almacen_app.models import Rol
+
+Rol.objects.create(nombre_rol='Docente')
+Rol.objects.create(nombre_rol='Personal de Mantenimiento')
+-------------------------------------------------------------------
+python manage.py shell
+from almacen_app.models import Rol, Persona
+from django.contrib.auth.hashers import make_password
+
+# Obtén un rol existente (puedes ajustar esto según tu lógica)
+docente_role = Rol.objects.first()
+
+# Crea una nueva persona
+nueva_persona = Persona(
+    id_rol=docente_role,
+    nombre='Máximo Eduardo',
+    apellido_paterno='Sánchez',
+    apellido_materno='Gutiérrez',
+    telefono='5678340948',
+    correo='maximo.sanchez@uacm.edu.mx',
+    contrasena=make_password('Maxpower1')
+)
+
+# Guarda la nueva persona en la base de datos
+nueva_persona.save()
+--------------------------------------------------------------------
+
+python manage.py shell
+
+from almacen_app.models import Almacen
+
+almacen_cuautepec = Almacen(
+    tipo_almacen="Local Plantel Cuautepec",
+    direccion="Av. La Corona No. 320, Col La Palma, Loma la Palma, 00000 Ciudad de México",
+    telefono="55 5134 9804",
+    correo="serviciosestudiantilescuau@gmail.com"
+)
+
+almacen_cuautepec.save()
+
+almacen_tezonco = Almacen(
+    tipo_almacen="Local Plantel San Lorenzo Tezonco",
+    direccion="Prol. San Isidro 151, San Lorenzo Tezonco, Iztapalapa, 09790 Ciudad de México, CDMX",
+    telefono="55 5858 0538",
+    correo=""
+)
+
+almacen_tezonco.save()
+
+almacen_valle = Almacen(
+    tipo_almacen="Local Plantel Del Valle",
+    direccion="S. Lorenzo 290, Col del Valle Sur, Benito Juárez, 03104 Ciudad de México, CDMX",
+    telefono="55 5488 6661",
+    correo="ee-delvalle@hotmail.com"
+)
+
+almacen_valle.save()
+
+almacen_casa = Almacen(
+    tipo_almacen="Local Plantel Casa Libertad",
+    direccion="Ermita Iztapalapa 4163, Lomas de Zaragoza, Iztapalapa, 09620 Ciudad de México, CDMX",
+    telefono="5858 0538",
+    correo="espacioestudiantil.izt@gmail.com"
+)
+
+almacen_casa.save()
+
+almacen_historico = Almacen(
+    tipo_almacen="Local Plantel Centro Histórico",
+    direccion="Fray Servando Teresa de Mier 92-y 99, Obrera, Cuauhtémoc, 06080 Ciudad de México, CDMX",
+    telefono="55 5134 9804",
+    correo=""
+)
+
+almacen_historico.save()
+
+almacen_general = Almacen(
+    tipo_almacen="Almacén general",
+    direccion="Calle Dr. García Diego 168, Doctores, Cuauhtémoc, 06720 Ciudad de México, CDMX",
+    telefono="55 1107 0280",
+    correo="coord.planeacion@uacm.edu.mx"
+)
+
+almacen_general.save()
+
+--------------------------------------------------------------------------------------
+
+python manage.py createsuperuser
+
+
